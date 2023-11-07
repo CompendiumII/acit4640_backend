@@ -1,0 +1,14 @@
+[Unit]
+Description=Example Python backend
+After=network.target
+Requires=mysql.service
+
+[Service]
+WorkingDirectory=/a01/src/backend/app.py
+Type=simple
+User=ubuntu
+ExecStart=/a01/.local/bin/gunicorn wsgi:app -b 0.0.0.0:5000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
